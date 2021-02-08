@@ -1,0 +1,15 @@
+%containerWrapper{
+    width: 100vw;
+    height: 95.5vh;
+    padding-top: 1px;
+    background-color: lighten($gray, 50);
+}
+%formWrapper{
+    width: 80%;
+    min-height: 50%;
+    max-width: 750px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 2rem;
+    font-size: $med;
+}

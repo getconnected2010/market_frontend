@@ -1,0 +1,11 @@
+@import './utility/variables';
+@import './utility/extend';
+@import './utility/mixins';
+@import './utility/functions';
+@import './utility/animate';
+@import './utility/commonClasses';
+
+//pages
+@import './pages/index';
+@import './pages/app';
+@import './pages/signup'
