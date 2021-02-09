@@ -11,7 +11,7 @@ export const ButtonComp =({label, onClickProp, ...rest})=>{
 export const FormComp =({children, legend, ...rest})=>{
     return(
         <Form {...rest}>
-            <h2><u>{legend}</u></h2>
+            <legend><u>{legend}</u></legend>
             {children}
         </Form>
     )

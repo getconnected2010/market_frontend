@@ -3,14 +3,33 @@
     height: 100vh;
     margin-top: -4rem;
     padding-top: 2rem;
-    background-color: lighten($gray, 50);
+    background-color: lighten($gray, 40);
 }
 %formWrapper{
-    width: 80%;
     min-height: 50%;
+    width: 80%;
     max-width: 750px;
-    margin: 3rem auto;
+    margin: 4rem auto;
     padding: 2rem;
+    border: 0.1rem solid $light;
     border-radius: 2rem;
     font-size: $med;
+    animation: formLoadAnime 4s linear;
+    legend{
+        @include dflex(center, center);
+        font-size: $large;
+    }
+    input, textarea{
+        &:focus{
+            border: solid 0.3rem $green;
+            border-radius: 0.5rem;
+        }
+    }
+    a{
+        display: block;
+        font-size: $xsm;
+    }
+    button{
+        @extend .button;
+    }
 }

@@ -1,9 +1,10 @@
-.signup{
+.sell{
     @extend %containerWrapper;
-    @include bgImg('../../assets/images/sky.jpg', bottom);
+    @include bgImg('../../assets/images/dollar-dark.jpg', bottom);
     form{
         @extend %formWrapper;
         color: $light;
+        //animation: formLoadAnime 4s linear;
     }
     a{
         color: lighten($blue, 40);
