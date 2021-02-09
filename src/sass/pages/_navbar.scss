@@ -1,0 +1,12 @@
+.navBar{
+    @include dflex(center, center);
+    height: 4rem;
+    font-size: $med;
+    background-color: $darkNav;
+    position: relative;
+    z-index: 9;
+    a{
+        margin: auto 3rem;
+        color: $light;
+    }
+}

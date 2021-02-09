@@ -1,16 +1,24 @@
 .signup{
     @extend %containerWrapper;
+    @include bgImg('../../assets/images/sky.jpg', bottom);
     form{
         @extend %formWrapper;
-        background-color: $gray;
-        color: set-text-color($gray);
+        border: 1px solid $light;
+        color: $light;
     }
     h2{
-        text-align: center;
+        @include dflex(center, center)
+    }
+    input{
+        &:focus {
+            border: solid 0.3rem $green;
+            border-radius: 0.5rem;
+        }
     }
     a{
         display: block;
-        color: darken($blue, 10);
+        color: lighten($blue, 40);
+        font-size: $xsm;
     }
     button{
        @extend .button

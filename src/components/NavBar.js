@@ -1,21 +1,13 @@
 import React from 'react'
-import Nav from 'react-bootstrap/Nav'
+import { Link } from 'react-router-dom'
 
-const NavBar=()=>{
-  return(
-
-      <Nav variant="pills" defaultActiveKey="/home">
-        <Nav.Item>
-          <Nav.Link href="/home">Active</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1">Option 2</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-2" >Disabled</Nav.Link>
-        </Nav.Item>
-      </Nav>
+const NavBar = () => {
+  return (
+    <div className='navBar'>
+      <Link to='/'>Home</Link>
+      <Link to='/signup'>Sign up</Link>
+      <Link to='/'>Not assigned</Link>
+    </div>
   )
 }
-
 export default NavBar

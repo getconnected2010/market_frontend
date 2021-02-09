@@ -1,10 +1,13 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom';
 import {useForm} from 'react-hook-form'
 import * as Yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
 import {ButtonComp, FormComp, InputComp} from './reusableFormComponents'
+import {signupApi} from '../services/api/userApi';
 
 const SignUp = () => {
+    const history = useHistory()
     const initValues = {username:'', password:'', confirm:'', pet:''}
     const schema = Yup.object().shape({
         username: Yup.string().required('username is required')
@@ -14,8 +17,14 @@ const SignUp = () => {
                                                     mode:'onBlur',
                                                     resolver: yupResolver(schema)
                                                 })
-    const submitForm=(values)=>{
+    const submitForm=async(values)=>{
         console.log(values)
+        const result = await signupApi(values)
+        console.log(result)
+        if(result&&result.status===200){
+            history.push('/')
+            return
+        }
         reset(initValues)
     }
     return (
@@ -25,7 +34,7 @@ const SignUp = () => {
                 <InputComp name='password' label='Password :' type='password' errProp={errors} refProp={register}/>
                 <InputComp name='confirm' label='Confirm Password :' type='password' errProp={errors} refProp={register}/>
                 <InputComp name='pet' label='Your favourite pet name :' type='text' errProp={errors} refProp={register}/>
-                <a href='#' onClick={()=> reset(initValues)}>reset form</a>
+                <a href='#' onClick={()=> reset(initValues)}>Clear form inputs?</a>
                 <ButtonComp type='submit' label={'submit'} />
             </FormComp>
             

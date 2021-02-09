@@ -1,0 +1,10 @@
+@mixin bgImg($url, $position) {
+    background-image: url($url);
+    background-size: cover;
+    background-position: $position;
+}
+@mixin dflex($just, $align) {
+    display: flex;
+    justify-content: $just;
+    align-items: $align;
+}
