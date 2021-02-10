@@ -1,12 +1,16 @@
 .navBar{
     @include dflex(center, center);
     height: 4rem;
-    font-size: $med;
-    background-color: $darkBg;
+    background-color: change-color($dark, $alpha: 0.4);
     position: relative;
     z-index: 9;
     a{
         margin: auto 3rem;
+        font-size: $med;
         color: $light;
+        @include tablet{
+            margin: auto 1rem;
+            font-size: $sm;
+        }
     }
 }

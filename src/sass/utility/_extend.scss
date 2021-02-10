@@ -1,6 +1,6 @@
 %containerWrapper{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     margin-top: -4rem;
     padding-top: 2rem;
     background-color: lighten($gray, 40);
@@ -14,7 +14,7 @@
     border: 0.1rem solid $light;
     border-radius: 2rem;
     font-size: $med;
-    animation: formLoadAnime 4s linear;
+    animation: formLoadAnime 2s linear;
     legend{
         @include dflex(center, center);
         font-size: $large;

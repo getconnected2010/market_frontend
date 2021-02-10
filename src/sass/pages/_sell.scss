@@ -4,7 +4,6 @@
     form{
         @extend %formWrapper;
         color: $light;
-        //animation: formLoadAnime 4s linear;
     }
     a{
         color: lighten($blue, 40);

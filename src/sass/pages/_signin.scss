@@ -1,0 +1,13 @@
+.signin{
+    @extend %containerWrapper;
+    @include bgImg('../../assets/images/rusted-lock.jpg', center);
+    background-color: change-color($dark, $alpha:0.7);
+    background-blend-mode: darken;
+    form{
+        @extend %formWrapper;
+        color: $light;
+    }
+    a{
+        color: lighten($blue, 50);
+    }
+}
