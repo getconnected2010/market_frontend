@@ -6,7 +6,7 @@ import Tooltip from 'react-bootstrap/Tooltip'
 import Fade from 'react-bootstrap/Fade'
 import Collapse from 'react-bootstrap/Collapse'
 
-export const ButtonComp =({label, onClickProp, ...rest})=>{
+export const ButtonComp =({label, ...rest})=>{
     return(
         <Button  {...rest} >{label}</Button>
     )

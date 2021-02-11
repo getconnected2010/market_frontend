@@ -1,19 +1,31 @@
 .homePage{
-    @extend %containerWrapper;
-    all: revert;
-  &__first{
-        height: 40vh;
-        background-color: $dark;
-  }
-  &__second{
-        height: 40vh;
-        background-color: $gray;
-  }
-  &__third{
-        height: 40vh;
-        background-color: $blue;
-  }
-  .card-deck{
-        height: 40vh;
-  }
+      margin-top: -4rem;
+      min-height: 98vh;
+      .carousel-item{
+            background: $dark;
+            img{
+                  width: 100vw;
+                  height: 30vh;
+                  object-fit: contain;
+            }
+            span{
+                  background-color: change-color($dark, $alpha: 0.5);
+                  border-radius: 1rem;
+            }
+      }
+      .jumbotron{
+            margin-bottom: 0;
+      }
+      &__catagories{
+            min-height: 34vh;
+
+            .card{
+                  border: none;
+                  background: none;
+            }
+            .card-header{
+                  padding-left: 0;
+            }
+      }
+
 }
