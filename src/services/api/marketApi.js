@@ -13,7 +13,7 @@ export const newPostApi=async(data)=>{
             formData.append(key, data[key])
         })
         const result = await axiosInstance.post('/market/post', formData)
-        console.log(result)
+        return result
     } catch (error) {
         return error
     }

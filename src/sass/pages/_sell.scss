@@ -5,6 +5,14 @@
         @extend %formWrapper;
         color: $light;
     }
+    .form-check{
+        display: flex;
+        align-items: center;
+        font-size: $sm;
+    }
+    &__email{
+        animation: formLoadAnime 1000ms linear;
+    }
     a{
         color: lighten($blue, 40);
     }

@@ -1,9 +1,8 @@
 .error{
-    background-color: darken($light, 40);
+    background-color: $red;
     padding: 0 0.4rem 0.1rem 0.4rem;
-    border: 0.1rem solid $red;
     border-radius: 1rem;
-    color: $red;
+    color: $light;
 }
 .button{
     padding: 0.5rem 1.5rem;

@@ -2,24 +2,26 @@
     width: 100vw;
     min-height: 100vh;
     margin-top: -4rem;
-    padding-top: 2rem;
+    padding-top: 4rem;
     background-color: lighten($gray, 40);
+    display: flex;
 }
 %formWrapper{
     min-height: 50%;
     width: 80%;
     max-width: 750px;
-    margin: 4rem auto;
+    margin: auto auto;
     padding: 2rem;
     border: 0.1rem solid $light;
     border-radius: 2rem;
     font-size: $med;
-    animation: formLoadAnime 2s linear;
+    animation: formLoadAnime 1000ms linear;
     legend{
         @include dflex(center, center);
         font-size: $large;
     }
     input, textarea{
+        transition-property: border, border-radius;
         &:focus{
             border: solid 0.3rem $green;
             border-radius: 0.5rem;

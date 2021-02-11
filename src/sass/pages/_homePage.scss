@@ -1,3 +1,19 @@
 .homePage{
     @extend %containerWrapper;
+    all: revert;
+  &__first{
+        height: 40vh;
+        background-color: $dark;
+  }
+  &__second{
+        height: 40vh;
+        background-color: $gray;
+  }
+  &__third{
+        height: 40vh;
+        background-color: $blue;
+  }
+  .card-deck{
+        height: 40vh;
+  }
 }
