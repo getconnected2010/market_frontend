@@ -3,9 +3,12 @@
       min-height: 98vh;
       .carousel-item{
             background: $dark;
+            width: 100vw;
+            height: 30vh;
+            //max-width: 800px;
             img{
-                  width: 100vw;
-                  height: 30vh;
+                  height: 100%;
+                  width: 100%;
                   object-fit: contain;
             }
             span{
@@ -18,14 +21,17 @@
       }
       &__catagories{
             min-height: 34vh;
-
-            .card{
+            .card, .card-header{
                   border: none;
                   background: none;
             }
             .card-header{
                   padding-left: 0;
             }
+            h2{
+                  &::after{
+                        content: '>>>';
+                  }
+            }
       }
-
 }

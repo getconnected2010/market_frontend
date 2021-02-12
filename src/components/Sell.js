@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useForm} from 'react-hook-form';
 import * as Yup from 'yup';
-import {ButtonComp, CheckboxComp, CollapseComp, FadeComp, FormComp, InputComp, OverlayComp} from './reusableFormComponents'
+import {ButtonComp, CheckboxComp, CollapseComp, FadeComp, FormComp, InputComp, OverlayComp, SelectComp} from './reusableFormComponents'
 import { yupResolver } from '@hookform/resolvers/yup';
 import {newPostApi} from '../services/api/marketApi'
 
@@ -11,8 +11,15 @@ const checkboxMessage= "Your email will be kept private. Market will securely em
 const Sell = () => {
     const history = useHistory()
     const [showEmail, setShowEmail] = useState(false)
-    const initValues= {email:'',title:'', description:'', pics:'', contact:''}
+    const initValues= {catagory:'', email:'',title:'', description:'', pics:'', contact:''}
+    const selectOptions=[
+        {label:'auto', value:'auto'}, {label:'household', value:'household'}, {label:'electronics', value:'electronics'},
+        {label:'fashion', value:'fashion'}, {label:'housing', value:'housing'}, {label:'pesonal care', value:'pesonal care'},
+        {label:'for hire', value:'for hire'}, {label:'everything else', value:'everything else'}
+    ]
+    const selectArr =['auto', 'household', 'electronics', 'fashion', 'housing', 'pesonal care', 'for hire', 'everything else']
     const schema = Yup.object().shape({
+        catagory: Yup.string().required('A catagory is required'),
         title: Yup.string().required('A title is required'),
         description: Yup.string().required('A description is required'),
         email: Yup.string().when('contact', {
@@ -40,7 +47,8 @@ const Sell = () => {
     return (
         <div className='sell'>
             <FormComp onSubmit={handleSubmit(submitForm)} legend='Post to classifieds'>
-                <InputComp label='Posting title :' name='title' type='text' errProp={errors} refProp={register} />
+                <SelectComp label='Select a catagory :' name='catagory' errProp={errors} refProp={register} selectOptions={selectOptions} size="lg"  custom/>
+                <InputComp label='Posting title :' name='title' type='text' errProp={errors} refProp={register} size='lg' />
                 <InputComp label='Posting description :' name='description' as='textarea' rows={3} errProp={errors} refProp={register} />
                 <InputComp label='Attach upto four pictures :' name='pics' type='file' multiple errProp={errors} refProp={register} />
                 {/* triggers a tooltip with a message on checkbox area hover */}

@@ -74,3 +74,20 @@ export const OverlayComp=({message, children})=>{
         </OverlayTrigger>
     )
 }
+
+//select component
+export const SelectComp=({errProp, label, name, refProp, selectOptions, ...rest})=>{
+    return(
+        <Form.Group >
+            <Form.Label>{label}</Form.Label>
+            <Form.Control as="select" name={name} ref={refProp} {...rest}>
+            {
+                selectOptions.map(item=>(
+                    <option key={item.value} value={item.value}>{item.label}</option>
+                ))
+            }
+            </Form.Control>
+            {errProp[name]&&<span className='error'>{errProp[name].message}</span>}
+        </Form.Group>
+    )
+}

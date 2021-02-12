@@ -21,19 +21,19 @@ const HomePage = () => {
         <ModalComp showProp={showModal} setShowProp={setShowModal} title={aboutUs.title} body={aboutUs.body} />
         <div className='homePage'>
             <Carousel>
-                <Carousel.Item interval={500000}>
+                <Carousel.Item interval={5000}>
                     <img src={bank_volt} />
                     <Carousel.Caption>
                     <span>First slide label</span>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={500000}>
+                <Carousel.Item interval={5000}>
                     <img src={combo_lock} />
                     <Carousel.Caption>
                     <span>Second slide label bbbbbbbbbbbbbbbb </span>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={500000}>
+                <Carousel.Item interval={5000}>
                     <img src={padlock} />
                     <Carousel.Caption>
                     <span>Third slide label</span>

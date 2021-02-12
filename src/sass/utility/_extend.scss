@@ -20,7 +20,7 @@
         @include dflex(center, center);
         font-size: $large;
     }
-    input, textarea{
+    input, select, textarea{
         transition-property: border, border-radius;
         &:focus{
             border: solid 0.3rem $green;
