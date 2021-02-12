@@ -10,4 +10,9 @@
     border-radius: 1rem;
     font-size: $sm;
     margin: 1rem auto;
+    &:hover{
+        border: 1px solid $blue;
+        background: $light;
+        color: $blue;
+    }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Switch, BrowserRouter as Router, Route} from 'react-router-dom'
-import HomePage from './components/HomePage'
+import HomePage from './components/homePage/HomeMain'
 import List from './components/List'
 import NavBar from './components/NavBar'
 import Sell from './components/Sell'
