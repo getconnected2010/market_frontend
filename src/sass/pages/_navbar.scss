@@ -1,5 +1,6 @@
 .navBar{
     @include dflex(center, center);
+    flex-direction: row;
     height: 4rem;
     background-color: change-color($dark, $alpha: 0.4);
     position: relative;
@@ -12,5 +13,9 @@
             margin: auto 1rem;
             font-size: $sm;
         }
+    }
+    button{
+       position: absolute;
+       right: 1rem;
     }
 }

@@ -1,16 +1,27 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal';
 
-const ModalComp =({showProp, setShowProp, title, body})=>{
+const ModalComp =({showProp, setShowProp, title, body, picArr})=>{
     return (
-        <Modal  size="lg" show={showProp} onHide={() => setShowProp(false)}>
+        <Modal className='modalComp'  size="lg" show={showProp} onHide={() => setShowProp(false)}>
             <Modal.Header closeButton>
                 <Modal.Title >
                    {title}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {body}
+                <div className='modalComp_img'>
+
+                     {
+                        picArr && picArr.map(pic=>(
+                                        <img key={pic} src={pic} />
+                                    ))
+                    }
+                </div>
+                <div className='modalComp_body'>
+                    {body}
+                </div>
+                
             </Modal.Body>
         </Modal>
 

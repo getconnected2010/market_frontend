@@ -1,5 +1,14 @@
 import {axiosInstance} from './axiosConfig'
 
+export const fetchListApi= async(data)=>{
+    try {
+        const result = await axiosInstance.get(`/market/list/${data}`)
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
 export const newPostApi=async(data)=>{
     try {
         const formData= new FormData()

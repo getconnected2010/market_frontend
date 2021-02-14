@@ -8,7 +8,7 @@ import Collapse from 'react-bootstrap/Collapse'
 
 export const ButtonComp =({label, ...rest})=>{
     return(
-        <Button  {...rest} >{label}</Button>
+        <Button className='button__sm' {...rest} >{label}</Button>
     )
 }
 

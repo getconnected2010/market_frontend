@@ -15,4 +15,9 @@
         background: $light;
         color: $blue;
     }
+    &__sm{
+        @extend .button;
+        padding: 0 0.7rem;
+        font-size: $xsm;
+    }
 }
