@@ -28,9 +28,9 @@ const Signin = () => {
             dispatch(signinAction())
             return history.push('/')
         }
+        reset(initValues)
         dispatch(signoutAction())
         if(result.response&&result.response.data&&result.response.data.msg){
-           
             return alert(result.response.data.msg)
         }
         alert('error logging you in')

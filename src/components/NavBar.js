@@ -8,11 +8,14 @@ import {signoutApi} from '../services/api/userApi'
 const NavBar = () => {
   const dispatch = useDispatch()
   const user = useSelector(state=>state.user)
+
   const signout =async()=>{
-    await signoutApi()
-    dispatch(signoutAction())
-    window.location.href='/'
+    console.log('inside signout')
+      await signoutApi()
+      dispatch(signoutAction())
+      window.location.href='/'
   }
+  
   return (
     <div className='navBar'>
       <Link to='/'>Home</Link>

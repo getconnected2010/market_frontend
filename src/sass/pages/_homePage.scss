@@ -21,7 +21,8 @@
             }
       }
       .jumbotron{
-            margin-bottom: 0;
+            box-shadow: 0 0 5px 5px $light;
+            border-radius: 1rem;
             button{
                   @extend .button
             }

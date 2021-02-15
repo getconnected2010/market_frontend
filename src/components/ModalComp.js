@@ -1,9 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 
 const ModalComp =({showProp, setShowProp, title, body, picArr})=>{
+    const [picZoom, setPicZoom] = useState(false)
+    const zoomFunc=(e)=>{
+        if(picZoom===e.target.id){
+            setPicZoom('')
+        }else{
+            setPicZoom(e.target.id)
+        }
+    }
     return (
-        <Modal className='modalComp'  size="lg" show={showProp} onHide={() => setShowProp(false)}>
+        <Modal className='modalComp'  size="lg" show={showProp} onHide={() =>{setPicZoom(''); setShowProp(false)}}>
             <Modal.Header closeButton>
                 <Modal.Title >
                    {title}
@@ -14,8 +22,8 @@ const ModalComp =({showProp, setShowProp, title, body, picArr})=>{
 
                      {
                         picArr && picArr.map(pic=>(
-                                        <img key={pic} src={pic} />
-                                    ))
+                                pic && <img key={pic} id={pic} src={pic} className={picZoom===pic?'zoom':''} onClick={zoomFunc} />
+                                ))
                     }
                 </div>
                 <div className='modalComp_body'>
