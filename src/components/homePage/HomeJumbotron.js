@@ -12,7 +12,7 @@ const HomeJumbotron = ({modalProp}) => {
                 <h1>Market</h1>
                 <p>{aboutUs.highlight}</p>
                 <p>
-                    <ButtonComp label='Learn more' onClick={()=>modalProp(true)} />
+                    <ButtonComp onClick={()=>modalProp(true)}>Learn more</ButtonComp>
                 </p>
             </Container>
         </Jumbotron>

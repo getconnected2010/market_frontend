@@ -35,7 +35,7 @@ const SignUp = () => {
                 <InputComp name='confirm' label='Confirm Password :' type='password' errProp={errors} refProp={register}/>
                 <InputComp name='pet' label='Your favourite pet name :' type='text' errProp={errors} refProp={register}/>
                 <a href='#' onClick={()=> reset(initValues)}>Clear form inputs?</a>
-                <ButtonComp type='submit' label={'submit'} />
+                <ButtonComp type='submit'>Sign up</ButtonComp>
             </FormComp>
             
         </div>

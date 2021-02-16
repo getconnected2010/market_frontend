@@ -60,7 +60,7 @@ const Sell = () => {
                     <InputComp className='sell__email' label='Email :' name='email' type='text' errProp={errors} refProp={register} />
                 </CollapseComp>
                 <a href='#' onClick={()=>{reset(initValues); setShowEmail(false)}}>Clear form inputs?</a>
-                <ButtonComp label='Submit' type='submit' />
+                <ButtonComp type='submit'>Post Ad</ButtonComp>
             </FormComp>
             
         </div>

@@ -41,7 +41,7 @@ const Signin = () => {
                 <InputComp label='User name :' name='username' type='text' errProp={errors} refProp={register} />
                 <InputComp label='Password :' name='password' type='password' errProp={errors} refProp={register} />
                 <a href='#' onClick={()=>reset(initValues)}>reset form?</a>
-                <ButtonComp type='submit' label='Submit' />
+                <ButtonComp type='submit'>Sign in</ButtonComp>
             </FormComp>
         </div>
     )

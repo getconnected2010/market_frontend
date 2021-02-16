@@ -1,21 +1,45 @@
 .navBar{
-    @include dflex(center, center);
-    flex-direction: row;
+    @include dflex(start, center);
     height: 4rem;
     background-color: change-color($dark, $alpha: 0.4);
     position: relative;
     z-index: 9;
-    a{
-        margin: auto 3rem;
+    &__link{
+        margin-left: 10vw;
         font-size: $med;
         color: $light;
+        .dropdown-toggle{
+            color: $light;
+        }
+        // .dropdown-menu{
+        //     position: relative;
+        //     z-index: 100;
+        //     .dropdown-item{
+        //         background-color: purple;
+        //         position: relative;
+        //         z-index: 100;
+        //     }
+        // }
+        &:hover{
+            transition: transform 500ms linear;
+            transform: scale(1.25);
+            color: $light;
+        }
         @include tablet{
-            margin: auto 1rem;
             font-size: $sm;
         }
     }
     button{
-       position: absolute;
-       right: 1rem;
+        @extend .button__sm;
+        margin-right: 0.5rem;
+        a{
+            color:$light;
+            &:hover{
+                color: $blue;
+            }
+        }
+        &:nth-of-type(1){
+            margin-left: auto;
+        }
     }
 }

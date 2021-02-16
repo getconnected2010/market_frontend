@@ -1,8 +1,7 @@
 .homePage{
       @extend %containerWrapper;
       flex-direction: column;
-      margin-top: -8rem;
-      min-height: 100vh;
+      background-size: contain;
       .carousel{
             background: darken($blue, 40) ;
             width: 100vw;
@@ -24,11 +23,10 @@
             box-shadow: 0 0 5px 5px $light;
             border-radius: 1rem;
             button{
-                  @extend .button
+                  @extend .button;
             }
       }
       &__catagories{
-            min-height: 34vh;
             .card, .card-header{
                   border: none;
                   background: none;
@@ -45,7 +43,6 @@
       @include desktop{
             &{
               flex-direction: row-reverse;
-              margin-top: -4rem;
             }
             .carousel, .jumbotron{
                   width: 75vw;
