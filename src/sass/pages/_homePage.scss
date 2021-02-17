@@ -1,7 +1,7 @@
 .homePage{
       @extend %containerWrapper;
       flex-direction: column;
-      background-size: contain;
+      position: relative;
       .carousel{
             background: darken($blue, 40) ;
             width: 100vw;
@@ -14,56 +14,71 @@
                   width: 100%;
                   object-fit: contain;
             }
-            span{
-                  background-color: change-color($dark, $alpha: 0.5);
-                  border-radius: 1rem;
-            }
       }
       .jumbotron{
-            box-shadow: 0 0 5px 5px $light;
-            border-radius: 1rem;
+            box-shadow: 0 0 10px 5px $light;
             button{
                   @extend .button;
             }
       }
-      &__catagories{
-            .card, .card-header{
-                  border: none;
-                  background: none;
-            }
-            .card-header{
-                  padding-left: 0;
-            }
-            h2{
-                  &::after{
-                        content: '>>>';
+      &__left{
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right:0;
+            height: 15vh;
+            padding-left: 0.2rem;
+            display: flex;
+            flex-direction: row;
+            .image{
+                  height: 100%;
+                  width: 25%;
+                  border-radius: 1rem;
+                  overflow: hidden;
+                  margin-right: 0.2rem;
+                  img{
+                        height: 100%;
+                        width: 100%;
                   }
             }
       }
       @include desktop{
-            &{
-              flex-direction: row-reverse;
-            }
             .carousel, .jumbotron{
                   width: 75vw;
-                  margin: 1rem 2rem;
+                  margin: 0 1rem 0 auto;   
             }
             .carousel{
-                 border-radius: 1rem;
+                 margin-top: 1rem;
+                 border-top-left-radius: 1rem;
+                 border-top-right-radius: 1rem;
             }
-            &__catagories{
-                  width: 20vw;
-                  height: 88vh;
-                  margin: 1rem 2rem;
-                  background-color: darken($light, 10);
-                  border-radius: 1rem;
-                  box-shadow: 0px 0px 10px 1px;
-                  h2{
-                        padding-left: 2rem;
-                        &::after{
-                              content: '';
+            &__left{
+                  height: unset;
+                  left:1rem;
+                  bottom: 1rem;
+                  top: 4rem;
+                  width: 18vw;
+                  flex-direction: column;
+                  .image{
+                        margin-right: unset;
+                        width: 100%;
+                        height: 25%;
+                        margin-top: 1rem;
+                        box-shadow: 0 0 5px 5px $light;
+                        img{
+                              height: 100%;
+                              width: 100%;
                         }
                   }
+            }
+            &__right{
+                  position: absolute;
+                  right: 1rem;
+                  bottom:1rem;
+                  top:4rem;
+                  width: 18vw;
+                  border-radius: 1rem;
+                  display: flex;
             }
       }
 }

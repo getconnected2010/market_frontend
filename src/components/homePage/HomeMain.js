@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import HomeCarousel from './HomeCarousel';
-import HomeCatagories from './HomeCatagories';
 import HomeJumbotron from './HomeJumbotron';
 import ModalComp from '../ModalComp';
 import {aboutUs} from '../../assets/text'
@@ -33,20 +32,27 @@ const HomePage = () => {
    
     return (
         <>
-        <ModalComp showProp={showModal} setShowProp={setShowModal} title={aboutUs.title} body={aboutUs.body} />
-        <div className='homePage' ref={bgImg} >
-            <div className='homePage__first'>
+            <ModalComp showProp={showModal} setShowProp={setShowModal} title={aboutUs.title} body={aboutUs.body} />
+            <div className='homePage'>
                 <HomeCarousel />
-
                 <HomeJumbotron modalProp={setShowModal} />
-            </div>
-            <div className='homePage__catagories'>
-                <button onClick={bgFn}>set background</button>
-                <HomeCatagories />
 
+                <div className='homePage__left'>
+                    {
+                        Array.isArray(listArr)
+                        && 
+                        listArr.map(pic=>(
+                            <div key={pic.image1} className='image'>
+                                <img src={pic.image1} alt='posting pic' />
+                            </div>
+                        ))
+                    }
+                </div>
+                <div className='homePage__right'>
+
+                </div>
             </div>
-        </div>
-    </>
+        </>
     )
 }
 

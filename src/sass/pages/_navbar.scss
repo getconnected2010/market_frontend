@@ -8,22 +8,12 @@
         margin-left: 10vw;
         font-size: $med;
         color: $light;
+        transition: transform 500ms linear;
         .dropdown-toggle{
             color: $light;
         }
-        // .dropdown-menu{
-        //     position: relative;
-        //     z-index: 100;
-        //     .dropdown-item{
-        //         background-color: purple;
-        //         position: relative;
-        //         z-index: 100;
-        //     }
-        // }
         &:hover{
-            transition: transform 500ms linear;
             transform: scale(1.25);
-            color: $light;
         }
         @include tablet{
             font-size: $sm;
