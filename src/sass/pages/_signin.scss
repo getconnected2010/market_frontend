@@ -1,16 +1,8 @@
 .signin{
     @extend %containerWrapper;
-    //@include bgImg('../../assets/images/rusted-lock.jpg', center);
-    // background-color: change-color($dark, $alpha:0.7);
-    // background-blend-mode: darken;
-
-
-    background-image: url('../../assets/images/bank-volt.jpg'), url('../../assets/images/combo-lock.jpg');
-    background-size: contain;
-   //background-size: 100px 100px, 250px 250px;
-   background-repeat: no-repeat;
-    //background-position: top left, bottom right;
-
+    @include bgImg('../../assets/images/rusted-lock.jpg', center);
+    background-color: change-color($dark, $alpha:0.7);
+    background-blend-mode: darken;
     form{
         @extend %formWrapper;
         color: $light;

@@ -3,6 +3,7 @@
     height: 4rem;
     background-color: change-color($dark, $alpha: 0.4);
     position: relative;
+    font-family: sans-serif;
     z-index: 9;
     &__link{
         margin-left: 10vw;
@@ -13,10 +14,8 @@
             color: $light;
         }
         &:hover{
+            color: $light;
             transform: scale(1.25);
-        }
-        @include tablet{
-            font-size: $sm;
         }
     }
     button{
@@ -31,5 +30,12 @@
         &:nth-of-type(1){
             margin-left: auto;
         }
+    }
+    @include tablet{
+        font-size: $sm;
+    }
+    @include desktop{
+        width: 75vw;
+        margin-left: auto;
     }
 }

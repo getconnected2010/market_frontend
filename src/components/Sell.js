@@ -11,7 +11,8 @@ const checkboxMessage= "Your email will be kept private. Market will securely em
 const Sell = () => {
     const history = useHistory()
     const [showEmail, setShowEmail] = useState(false)
-    const initValues= {catagory:'', email:'',title:'', description:'', pics:'', contact:''}
+    const [submitting, setSubmitting] = useState(false)
+    const initValues= {catagory:'', email:'',title:'', description:'', pics:'', price:'', contact:''}
     const selectOptions=[
         {label:'auto', value:'auto'}, {label:'household', value:'household'}, {label:'electronics', value:'electronics'},
         {label:'fashion', value:'fashion'}, {label:'housing', value:'housing'}, {label:'pesonal care', value:'pesonal care'},
@@ -22,20 +23,28 @@ const Sell = () => {
         catagory: Yup.string().required('A catagory is required'),
         title: Yup.string().required('A title is required'),
         description: Yup.string().required('A description is required'),
+        price: Yup.string(),
         email: Yup.string().when('contact', {
             is: true,
             then: Yup.string().required('please enter an email address')
         })
     })
     const submitForm=async(values)=>{
+        setSubmitting(true)
         const result = await newPostApi(values)
-        if(result.response&&result.response.data&&result.response.data.msg) return alert(result.response.data.msg)
+        if(result.response&&result.response.data&&result.response.data.msg) {
+            alert(result.response.data.msg)
+            setSubmitting(false)
+            return
+        } 
         if(result.status&&result.status===200) {
             alert('successfully posted to classifieds')
+            setSubmitting(false)
             history.push('/')
             return
         }
         alert('application error posting to classifieds. Please try again.')
+        setSubmitting(false)
         reset(initValues)
         setShowEmail(false)
     }
@@ -48,8 +57,9 @@ const Sell = () => {
         <div className='sell'>
             <FormComp onSubmit={handleSubmit(submitForm)} legend='Post to classifieds'>
                 <SelectComp label='Select a catagory :' name='catagory' errProp={errors} refProp={register} selectOptions={selectOptions} size="lg"  custom/>
-                <InputComp label='Posting title :' name='title' type='text' errProp={errors} refProp={register} size='lg' />
-                <InputComp label='Posting description :' name='description' as='textarea' rows={3} errProp={errors} refProp={register} />
+                <InputComp label='Post title :' name='title' type='text' errProp={errors} refProp={register} size='lg' />
+                <InputComp label='Description :' name='description' as='textarea' rows={3} errProp={errors} refProp={register} />
+                <InputComp label='Price :' name='price' type='text' errProp={errors} refProp={register} size='lg' />
                 <InputComp label='Attach upto four pictures :' name='pics' type='file' multiple errProp={errors} refProp={register} />
                 {/* triggers a tooltip with a message on checkbox area hover */}
                 <OverlayComp message={checkboxMessage} >
@@ -60,7 +70,7 @@ const Sell = () => {
                     <InputComp className='sell__email' label='Email :' name='email' type='text' errProp={errors} refProp={register} />
                 </CollapseComp>
                 <a href='#' onClick={()=>{reset(initValues); setShowEmail(false)}}>Clear form inputs?</a>
-                <ButtonComp type='submit'>Post Ad</ButtonComp>
+                <ButtonComp disabled={submitting} type='submit'>{submitting? 'Please wait...':'Post Ad'}</ButtonComp>
             </FormComp>
             
         </div>

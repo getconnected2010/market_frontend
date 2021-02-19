@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {assignCkie, readCkie} from '../cookies'
+import {assignCkie, delCkie, readCkie} from '../cookies'
 
 let url;
 if(process.env.NODE_ENV==='production'){
@@ -17,7 +17,25 @@ axiosInstance.interceptors.response.use(async(res)=>{
         await assignCkie(res.headers.usertoken)
     }
     return res
-})
+}, async(error)=>{
+    if(error&&error.response&&error.response.status===401){
+        delCkie()
+        setTimeout(() => {
+            window.location.href='/signin'
+        }, 5000);
+    }
+    if(error){
+        const user = await readCkie()
+        if(!user|| user.user_id===null){
+            setTimeout(() => {
+                window.location.href='/signin'
+            }, 5000);
+            
+        }
+    }
+    return Promise.reject(error)
+}
+)
 
 axiosInstance.interceptors.request.use(async(req)=>{
     const usertoken = await readCkie()

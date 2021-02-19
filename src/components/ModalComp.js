@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 
-const ModalComp =({showProp, setShowProp, title, body, picArr})=>{
+const ModalComp =({showProp, setShowProp, title, body, price, picArr})=>{
     const [picZoom, setPicZoom] = useState(false)
     const zoomFunc=(e)=>{
         if(picZoom===e.target.id){
@@ -18,8 +18,12 @@ const ModalComp =({showProp, setShowProp, title, body, picArr})=>{
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+                <div className='modalComp_price'>
+                        {
+                            price?`Price: $${price}`:null
+                        }
+                </div>
                 <div className='modalComp_img'>
-
                      {
                         picArr && picArr.map(pic=>(
                                 pic && <img key={pic} id={pic} src={pic} className={picZoom===pic?'zoom':''} onClick={zoomFunc} />
@@ -29,7 +33,6 @@ const ModalComp =({showProp, setShowProp, title, body, picArr})=>{
                 <div className='modalComp_body'>
                     {body}
                 </div>
-                
             </Modal.Body>
         </Modal>
 

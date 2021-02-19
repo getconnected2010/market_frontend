@@ -1,17 +1,8 @@
 import {axiosInstance} from './axiosConfig'
 
-export const listCatagoryApi= async(data)=>{
+export const getListApi= async(data)=>{
     try {
         const result = await axiosInstance.get(`/market/list/${data}`)
-        return result
-    } catch (error) {
-        return error
-    }
-}
-
-export const getPicsApi=async()=>{
-    try {
-        const result = await axiosInstance.get('/market/pics')
         return result
     } catch (error) {
         return error

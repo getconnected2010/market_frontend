@@ -5,10 +5,8 @@ import { ButtonComp } from './reusableFormComponents'
 import {signoutAction} from '../actions/userActions'
 import {signoutApi} from '../services/api/userApi'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 import ModalComp from './ModalComp';
-import {listCatagoryApi} from '../services/api/marketApi'
+import {getListApi} from '../services/api/marketApi'
 import {fetchListAction} from '../actions/listActions'
 
 const NavBar = () => {
@@ -20,7 +18,7 @@ const NavBar = () => {
   const [showModal, setShowModal] = useState(false)
   const [modalTitle, setModalTitle]= useState('')
   const fetchList=async(e)=>{
-      const result = await listCatagoryApi(e.target.id)
+      const result = await getListApi(e.target.id)
       if(result&&result.status===200&&result.data){
           if(result.data.length>0){
               sessionStorage.setItem('listArr', JSON.stringify(result.data))
@@ -63,7 +61,7 @@ const NavBar = () => {
           user.user_id ?
           <>
           <Link className='navBar__link' to='/sell'>Post to Classifieds</Link>
-          <ButtonComp onClick={signout} label='Logout' />
+          <ButtonComp onClick={signout}>Logout</ButtonComp>
           </>
           :
           <>
