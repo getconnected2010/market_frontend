@@ -1,22 +1,56 @@
 import React, {useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import { ButtonComp } from './reusableFormComponents'
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup'
+import * as Yup from 'yup';
+import { ButtonComp, FormComp, InputComp } from './reusableFormComponents'
 import {signoutAction} from '../actions/userActions'
 import {signoutApi} from '../services/api/userApi'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import ModalComp from './ModalComp';
 import {getListApi} from '../services/api/marketApi'
 import {fetchListAction} from '../actions/listActions'
+import {searchApi} from '../services/api/marketApi'
+
 
 const NavBar = () => {
   const catagories =['auto', 'household', 'electronics', 'fashion', 'housing', 'pesonal care', 'for hire', 'everything else']
   const dispatch = useDispatch()
   const history = useHistory()
   const user = useSelector(state=>state.user)
-    
   const [showModal, setShowModal] = useState(false)
   const [modalTitle, setModalTitle]= useState('')
+
+  const initValues={search:''}
+  const schema= Yup.object().shape({
+    search: Yup.string().required('?')
+  })
+  const {register, handleSubmit, errors, reset} = useForm({
+    defaultValues: initValues,
+    resolver: yupResolver(schema),
+    mode:'onBlur'
+  })
+  const searchDb=async(values)=>{
+    const result = await searchApi(values.search)
+    reset(initValues)
+    if(result&&result.status===200&&result.data.length>0){
+      sessionStorage.setItem('listArr', JSON.stringify(result.data))
+      dispatch(fetchListAction())
+      return history.push('/list')
+    }
+    if(result&&result.status===200&&result.data.length===0){
+      setModalTitle('no matching keywords found')
+      return setShowModal(true)
+    }
+    if(result&&result.response&&result.response.data&&result.response.data.msg){
+      setModalTitle(result.response.data.msg)
+      return setShowModal(true)
+    }else{
+      setModalTitle('error searching keyword')
+      return setShowModal(true)
+    }
+  }
   const fetchList=async(e)=>{
       const result = await getListApi(e.target.id)
       if(result&&result.status===200&&result.data){
@@ -47,9 +81,7 @@ const NavBar = () => {
     <>
       <ModalComp title={modalTitle} showProp={showModal} setShowProp={setShowModal} />
       <div className='navBar'>
-
         <Link className='navBar__link' to='/'>Home</Link>
-
         <NavDropdown className='navBar__link' title="Catagories" >
             {
                 catagories.map(item=>(
@@ -57,6 +89,11 @@ const NavBar = () => {
                 ))
             }
         </NavDropdown>
+
+        <FormComp onSubmit={handleSubmit(searchDb)}>
+          <InputComp type='text' name='search' refProp={register} errProp={errors} />
+          <ButtonComp type='submit'>Search</ButtonComp> 
+        </FormComp>
         {
           user.user_id ?
           <>
@@ -65,8 +102,8 @@ const NavBar = () => {
           </>
           :
           <>
-          <ButtonComp><Link to='/signin'>Sign in</Link></ButtonComp>
-          <ButtonComp><Link to='/signup'>Sign up</Link></ButtonComp>
+          <ButtonComp><Link to='/signin'>Sign-in</Link></ButtonComp>
+          <ButtonComp><Link to='/signup'>Sign-up</Link></ButtonComp>
           </>
         }
       </div>

@@ -1,5 +1,6 @@
 .homePage{
       @extend %containerWrapper;
+      background: linear-gradient($dark, darken($light, 10));
       flex-direction: column;
       position: relative;
       .carousel{
@@ -17,12 +18,13 @@
             }
       }
       .jumbotron{
-            box-shadow: 0 0 10px 5px $light;
+            box-shadow: 5px 0 10px 5px $light;
+            border-bottom-left-radius: 5px;
             button{
                   @extend .button;
             }
       }
-      &__preview{
+      &__pic-preview{
             position: absolute;
             bottom: 2px;
             left: 0;
@@ -35,20 +37,20 @@
             .image{
                   height: 45%;
                   width: 19%;
-                  border-radius: 1rem;
+                  border-radius: 0.5rem;
                   overflow: hidden;
                   margin-right: 0.2rem;
                   margin-bottom: 0.2rem;
                   transition: transform 400ms linear;
+                  box-shadow: 0 0 5px 2px $light;
                   position: relative;
                   img{
                         height: 100%;
                         width: 100%;
                   }
                   &:hover{
-                        transform: scale(1.07);
+                        transform: scale(1.05);
                         cursor:pointer; 
-                        border: 0.5px solid $blue;
                   }
                   .price{
                         @include dflex(center, center);
@@ -64,12 +66,15 @@
                   }
             }
       }
+      &__title-preview{
+            display: none;
+      }
       @include desktop{
             .carousel, .jumbotron{
                   width: 75vw;
                   margin-left: auto;   
             }
-            &__preview{
+            &__pic-preview{
                   flex-direction: unset;
                   height: unset;
                   left:1rem;
@@ -82,21 +87,27 @@
                         width: 45%;
                         min-width: 45%;
                         max-height: 20%;
-                        margin: 0.5rem 0.5rem 0 0;
+                        margin: 1rem 1rem 0 0;
                         img{
                               height: 100%;
                               width: 100%;
                         }
                   }
             }
-            &__right{
-                  position: absolute;
-                  right: 1rem;
-                  bottom:1rem;
-                  top:4rem;
-                  width: 18vw;
-                  border-radius: 1rem;
-                  display: flex;
+            &__title-preview{
+                  display: unset;
+                  width: 75vw;
+                  height: 30vh;
+                  margin-left: auto;
+                  overflow: hidden;                
+                  li{
+                        width: 45%;
+                        list-style:square;
+                        padding-bottom: 0.2rem;
+                        padding-left: 0.5rem;
+                        box-shadow: 2px 5px 10px 1px $light;
+                        font-family: sans-serif;
+                  }
             }
       }
 }

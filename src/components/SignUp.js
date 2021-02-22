@@ -18,7 +18,6 @@ const SignUp = () => {
                                                     resolver: yupResolver(schema)
                                                 })
     const submitForm=async(values)=>{
-        console.log(values)
         const result = await signupApi(values)
         console.log(result)
         if(result&&result.status===200){

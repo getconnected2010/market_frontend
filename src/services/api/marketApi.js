@@ -27,3 +27,12 @@ export const newPostApi=async(data)=>{
         return error
     }
 }
+
+export const searchApi= async(data)=>{
+    try {
+        const result = await axiosInstance.get(`/market/search/${data}`)
+        return result
+    } catch (error) {
+        return error
+    }
+}

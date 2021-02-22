@@ -1,9 +1,9 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import HomeCarousel from './HomeCarousel';
 import HomeJumbotron from './HomeJumbotron';
 import ModalComp from '../ModalComp';
-import {aboutUs} from '../../assets/text'
 import {getListApi} from '../../services/api/marketApi'
 import {fetchListAction} from '../../actions/listActions'
 
@@ -46,7 +46,7 @@ const HomePage = () => {
                 <HomeCarousel />
                 <HomeJumbotron modalProp={setShowModal} />
 
-                <div className='homePage__preview'>
+                <div className='homePage__pic-preview'>
                     {
                         Array.isArray(listArr)
                         && 
@@ -66,6 +66,22 @@ const HomePage = () => {
                             </div>
                         ))
                     }
+                </div>
+                <div className='homePage__title-preview'>
+                <h4>Today's highlights...</h4>
+                    <ul >
+                    {
+                        Array.isArray(listArr)
+                        &&
+                        listArr.map(item=>(
+                            <Link to='#' key={item.post_id} id={item.post_id} onClick={getDetails}>
+                                <li id={item.post_id} onClick={getDetails}>
+                                {item.price&& `$${item.price}. . .`} {item.title}
+                                </li>
+                            </Link>
+                        ))
+                    }
+                    </ul>
                 </div>
             </div>
         </>

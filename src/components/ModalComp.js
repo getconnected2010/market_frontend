@@ -18,19 +18,19 @@ const ModalComp =({showProp, setShowProp, title, body, price, picArr})=>{
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className='modalComp_price'>
+                <div className='modalComp__price'>
                         {
                             price?`Price: $${price}`:null
                         }
                 </div>
-                <div className='modalComp_img'>
+                <div className='modalComp__img'>
                      {
                         picArr && picArr.map(pic=>(
                                 pic && <img key={pic} id={pic} src={pic} className={picZoom===pic?'zoom':''} onClick={zoomFunc} />
                                 ))
                     }
                 </div>
-                <div className='modalComp_body'>
+                <div className='modalComp__body'>
                     {body}
                 </div>
             </Modal.Body>

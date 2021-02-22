@@ -27,13 +27,13 @@ const List = () => {
                 Array.isArray(listArr)  //prevents components failure incase listArr isn't iterable
                 &&
                 listArr.map(item=>(
-                    <div className='list_card' id={item.post_id} key={item.post_id}>
+                    <div className='list__card' id={item.post_id} key={item.post_id}>
                         <Link id={item.post_id} to='#' onClick={getDetails}>
-                            <div className='list_img' id={item.post_id}>
+                            <div className='list__img' id={item.post_id}>
                                 <img src={item.image1} alt='first image' id={item.post_id}/>
                             </div>
 
-                            <div id={item.post_id} className='list_title'>
+                            <div id={item.post_id} className='list__title'>
                                 {item.title}
                             </div>
                         </Link>
