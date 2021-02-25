@@ -14,15 +14,19 @@ const HomePage = () => {
     const listArr = useSelector(state=>state.list)
     const [showModal, setShowModal] = useState(false)
     const [modalTitle, setModalTitle] = useState('')
+    const [modalPostId, setModalPostId] = useState('')
     const [modalBody, setModalBody] = useState('')
     const [modalPrice, setModalPrice] = useState('')
+    const [modalContact, setModalContact] = useState('')
     const [modalPic, setModalPic] = useState([])
     
     const getDetails=(e)=>{
         const selectedItem= listArr.filter(item=>item.post_id===Number(e.target.id))
+        setModalPostId(selectedItem[0].post_id)
         setModalTitle(selectedItem[0].title)
-        setModalBody(selectedItem[0].description)
         setModalPrice(selectedItem[0].price)
+        setModalContact(selectedItem[0].contact)
+        setModalBody(selectedItem[0].description)
         setModalPic([selectedItem[0].image1, selectedItem[0].image2, selectedItem[0].image3, selectedItem[0].image4])
         setShowModal(true)
     }
@@ -41,7 +45,7 @@ const HomePage = () => {
    
     return (
         <>
-            <ModalComp showProp={showModal} setShowProp={setShowModal} title={modalTitle} body={modalBody} price={modalPrice} picArr={modalPic}/>
+            <ModalComp showProp={showModal} setShowProp={setShowModal} postId={modalPostId} title={modalTitle} price={modalPrice} contact={modalContact}  body={modalBody} picArr={modalPic}/>
             <div className='homePage'>
                 <HomeCarousel />
                 <HomeJumbotron modalProp={setShowModal} />

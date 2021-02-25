@@ -1,8 +1,18 @@
 import React, {useState} from 'react'
+import {Link} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalComp =({showProp, setShowProp, title, body, price, picArr})=>{
-    const [picZoom, setPicZoom] = useState(false)
+const ModalComp =({postId, body, contact, picArr, price, setShowProp, showProp, title})=>{
+    const [picZoom, setPicZoom] = useState(false) //pic enlarges onclick
+    const contactFn=(e)=>{
+        const message = prompt("Please enter your message in 200 characters or less. Only '!@$()_+=.' special characters allowed.")
+        if(message){
+            if(message.length>200) return alert('Maximum 200 characters allowed in message. Please try again.')
+            if(!message.match(/^[ a-zA-Z0-9!@$()_+=.]+$/)) return alert("Only '!@$()_+=.' special characters allowed. Please try again.")
+            console.log('message', message)
+            console.log('post-id', e.target.id)
+        }
+    }
     const zoomFunc=(e)=>{
         if(picZoom===e.target.id){
             setPicZoom('')
@@ -20,12 +30,17 @@ const ModalComp =({showProp, setShowProp, title, body, price, picArr})=>{
             <Modal.Body>
                 <div className='modalComp__price'>
                         {
-                            price?`Price: $${price}`:null
+                            price && `Price: $${price}`
+                        }
+                </div>
+                <div className='modalComp__contact'>
+                        {
+                            contact==='true' && <Link id={postId} onClick={contactFn} to='#'>Email seller</Link>
                         }
                 </div>
                 <div className='modalComp__img'>
                      {
-                        picArr && picArr.map(pic=>(
+                        picArr && Array.isArray(picArr) && picArr.map(pic=>(
                                 pic && <img key={pic} id={pic} src={pic} className={picZoom===pic?'zoom':''} onClick={zoomFunc} />
                                 ))
                     }

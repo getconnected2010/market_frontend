@@ -71,5 +71,10 @@
     @include desktop{
         width: 75vw;
         margin-left: auto;
+        form{
+            input{
+                width: 10vw;
+            }
+        }
     }
 }

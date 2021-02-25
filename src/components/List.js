@@ -6,22 +6,26 @@ import ModalComp from '../components/ModalComp'
 const List = () => {
     const listArr = useSelector(state => state.list)
     const [showModal, setShowModal] = useState(false)
+    const [modalPostId, setModalPostId] = useState('')
     const [modalTitle, setModalTitle] = useState('')
     const [modalBody, setModalBody] = useState('')
     const [modalPrice, setModalPrice] = useState('')
+    const [modalContact, setModalContact] = useState('')
     const [modalPic, setModalPic] = useState([])
 
     const getDetails=async(e)=>{
         const detail = await listArr.filter(item=>item.post_id===Number(e.target.id))
+        setModalPostId(detail[0].post_id)
         setModalTitle(detail[0].title)
         setModalBody(detail[0].description)
         setModalPrice(detail[0].price)
+        setModalContact(detail[0].contact)
         setModalPic([detail[0].image1, detail[0].image2, detail[0].image3, detail[0].image4])
         setShowModal(true)
     }
     return (
         <>
-        <ModalComp showProp={showModal} setShowProp={setShowModal} title={modalTitle} body={modalBody} price={modalPrice} picArr={modalPic}/>
+        <ModalComp showProp={showModal} setShowProp={setShowModal} postId={modalPostId} title={modalTitle} body={modalBody} price={modalPrice} contact={modalContact} picArr={modalPic}/>
         <div className='list'>
             {
                 Array.isArray(listArr)  //prevents components failure incase listArr isn't iterable
