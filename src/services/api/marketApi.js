@@ -1,5 +1,14 @@
 import {axiosInstance} from './axiosConfig'
 
+export const emailSellerApi= async(data)=>{
+    try {
+        const result = await axiosInstance.post('/market/message', data)
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
 export const getListApi= async(data)=>{
     try {
         const result = await axiosInstance.get(`/market/list/${data}`)

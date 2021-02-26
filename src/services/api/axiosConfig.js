@@ -24,15 +24,14 @@ axiosInstance.interceptors.response.use(async(res)=>{
             window.location.href='/signin'
         }, 5000);
     }
-    if(error){
-        const user = await readCkie()
-        if(!user|| user.user_id===null){
-            setTimeout(() => {
-                window.location.href='/signin'
-            }, 5000);
-            
-        }
-    }
+    // if(error){
+    //     const user = await readCkie()
+    //     if(!user|| user.user_id===null){
+    //         setTimeout(() => {
+    //             window.location.href='/signin'
+    //         }, 5000);
+    //     }
+    // }
     return Promise.reject(error)
 }
 )
