@@ -1,6 +1,7 @@
 .navBar{
     @include dflex(none, center);
     height: 4rem;
+    background-color: $dark;
     position: relative;
     font-family: sans-serif;
     z-index: 9;
@@ -69,8 +70,6 @@
         }
     }
     @include desktop{
-        width: 75vw;
-        margin-left: auto;
         form{
             input{
                 width: 10vw;

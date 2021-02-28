@@ -10,7 +10,7 @@ const ModalComp =({postId, body, contact, picArr, price, setShowProp, showProp, 
         const message = prompt(messageToSeller.inputPrompt)
         if(message){
             if(message.length>200) return alert(messageToSeller.lengthLimitations)
-            if(!message.match(/^[ a-zA-Z0-9!@$()_+=.]+$/)) return alert(messageToSeller.crLimitations)
+            if(!message.match(/^[ a-zA-Z0-9!@$?()_+=.]+$/)) return alert(messageToSeller.crLimitations)
 
             const result = await emailSellerApi({message: message, post_id: e.target.id})
             if(!result) return alert("Error contacting seller. Please try again.")

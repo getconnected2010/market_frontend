@@ -7,8 +7,6 @@ import ModalComp from '../ModalComp';
 import {getListApi} from '../../services/api/marketApi'
 import {fetchListAction} from '../../actions/listActions'
 
-import padlock from '../../assets/images/padlock.jpg'
-
 const HomePage = () => {
     const dispatch = useDispatch()
     const listArr = useSelector(state=>state.list)
@@ -54,8 +52,8 @@ const HomePage = () => {
                     {
                         Array.isArray(listArr)
                         && 
-                        listArr.map(pic=>(
-                            <div id={pic.post_id} key={pic.image1} className='image'>
+                        listArr.map((pic, i)=>(
+                            <div id={pic.post_id} key={i} className='image'>
                                 {
                                     pic.price
                                     ?

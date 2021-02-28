@@ -9,6 +9,8 @@ import NavBar from './components/NavBar'
 import Sell from './components/Sell'
 import Signin from './components/Signin'
 import SignUp from './components/SignUp'
+import EditPost from './components/EditPost'
+
 
 function App () {
   const dispatch = useDispatch()
@@ -21,7 +23,9 @@ function App () {
       <NavBar />
       <Switch>
         <Route exact path='/' component={HomePage} />
+        {/* <Route path='/edit/:post_id' component={EditPost} /> */}
         <Route path='/list' component={List} />
+        <Route path='/sell/:post_id' component={Sell} />
         <Route path='/sell' component={Sell} />
         <Route path='/signin' component={Signin} />
         <Route path='/signup' component={SignUp} />

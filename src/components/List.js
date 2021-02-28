@@ -1,10 +1,15 @@
 import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import ModalComp from '../components/ModalComp'
+import {ButtonComp} from '../components/reusableFormComponents'
 
 const List = () => {
     const listArr = useSelector(state => state.list)
+    const history = useHistory()
+    let user_id
+    const user = useSelector(state=> state.user)
+    if(user) user_id= user.user_id
     const [showModal, setShowModal] = useState(false)
     const [modalPostId, setModalPostId] = useState('')
     const [modalTitle, setModalTitle] = useState('')
@@ -22,6 +27,10 @@ const List = () => {
         setModalContact(detail[0].contact)
         setModalPic([detail[0].image1, detail[0].image2, detail[0].image3, detail[0].image4])
         setShowModal(true)
+    }
+
+    const editPost =async(e)=>{
+        history.push(`/sell/${e.target.id}`)
     }
     return (
         <>
@@ -41,6 +50,13 @@ const List = () => {
                                 {item.title}
                             </div>
                         </Link>
+                        {  
+                            user_id===item.user_id &&
+                            <>
+                                <ButtonComp onClick={editPost} id={item.post_id}>Edit post</ButtonComp>
+                                <ButtonComp id={item.post_id}>Delete post</ButtonComp>
+                            </>
+                        }
                     </div>
                 ))
             }

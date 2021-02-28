@@ -15,7 +15,7 @@ export const ButtonComp =({children, ...rest})=>{
 export const CheckboxComp =({label, refProp, ...rest})=>{
     return(
         <Form.Group >
-            <Form.Check type="checkbox" label={label} ref={refProp} {...rest}/>
+            <Form.Check type="checkbox" label={label} ref={refProp}  {...rest}/>
         </Form.Group>
     )
 }

@@ -9,7 +9,7 @@ import {signoutAction} from '../actions/userActions'
 import {signoutApi} from '../services/api/userApi'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import ModalComp from './ModalComp';
-import {getListApi} from '../services/api/marketApi'
+import {getListApi, myPostsApi} from '../services/api/marketApi'
 import {fetchListAction} from '../actions/listActions'
 import {searchApi} from '../services/api/marketApi'
 
@@ -71,6 +71,27 @@ const NavBar = () => {
           setShowModal(true)
       }
     }
+  const fetchMyPosts=async()=>{
+    const result= await myPostsApi()
+    if(!result){
+      setModalTitle('Error fetching your posts')
+      setShowModal(true)
+      return
+    }
+    if(result.status===200 && Array.isArray(result.data)){
+      sessionStorage.setItem('listArr', JSON.stringify(result.data))
+     window.location.href ='/list'
+      return
+    }
+    if(result.response&&result.response.data&&result.response.data.msg){
+      setModalTitle(result.response.data.msg)
+      setShowModal(true)
+      return
+    }
+    setModalTitle('Error fetching your posts')
+    setShowModal(true)
+    return
+  }
   const signout =async()=>{
       await signoutApi()
       dispatch(signoutAction())
@@ -90,22 +111,30 @@ const NavBar = () => {
             }
         </NavDropdown>
 
+        {
+          user.user_id &&  
+          <>
+              <Link className='navBar__link' to='/sell'>Post to Classifieds</Link>
+              <Link className='navBar__link' to='#' onClick={fetchMyPosts}>My posts</Link>
+          </>
+        }
+
         <FormComp onSubmit={handleSubmit(searchDb)}>
           <InputComp type='text' name='search' refProp={register} errProp={errors} />
           <ButtonComp type='submit'>Search</ButtonComp> 
         </FormComp>
-        {
-          user.user_id ?
-          <>
-          <Link className='navBar__link' to='/sell'>Post to Classifieds</Link>
-          <ButtonComp onClick={signout}>Logout</ButtonComp>
-          </>
-          :
-          <>
-          <ButtonComp><Link to='/signin'>Sign-in</Link></ButtonComp>
-          <ButtonComp><Link to='/signup'>Sign-up</Link></ButtonComp>
-          </>
-        }
+          
+          { user.user_id ?
+              <ButtonComp onClick={signout}>Logout</ButtonComp>
+            :
+            <>
+              <ButtonComp><Link to='/signin'>Sign-in</Link></ButtonComp>
+              <ButtonComp><Link to='/signup'>Sign-up</Link></ButtonComp>
+            </>
+          }
+
+          
+        
       </div>
     </>
   )
