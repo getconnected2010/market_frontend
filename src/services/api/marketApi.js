@@ -1,21 +1,8 @@
 import {axiosInstance} from './axiosConfig'
 
-export const editPostApi = async(data)=>{
+export const delPostApi= async(data)=>{
     try {
-        let formData = new FormData()
-        Object.keys(data).map(item=>{
-            if(typeof(data[item])!=='object'){
-                formData.append(item, data[item])
-            }else{
-               const picArr= Array.from(data[item])
-               if(Array.isArray(picArr)){
-                   picArr.map(pic=>{
-                       formData.append('pics', pic)
-                   })
-               }
-            }
-        })
-        const result = await axiosInstance.post('/market/update', formData)
+        const result = await axiosInstance.delete(`/market/${data}`)
         return result
     } catch (error) {
         return error
@@ -74,6 +61,28 @@ export const newPostApi=async(data)=>{
 export const searchApi= async(data)=>{
     try {
         const result = await axiosInstance.get(`/market/search/${data}`)
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+export const updatePostApi = async(data)=>{
+    try {
+        let formData = new FormData()
+        Object.keys(data).map(item=>{
+            if(typeof(data[item])!=='object'){
+                formData.append(item, data[item])
+            }else{
+               const picArr= Array.from(data[item])
+               if(Array.isArray(picArr)){
+                   picArr.map(pic=>{
+                       formData.append('pics', pic)
+                   })
+               }
+            }
+        })
+        const result = await axiosInstance.post('/market/update', formData)
         return result
     } catch (error) {
         return error

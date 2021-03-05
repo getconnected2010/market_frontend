@@ -5,7 +5,7 @@ import {useForm} from 'react-hook-form';
 import * as Yup from 'yup';
 import {ButtonComp, CheckboxComp, CollapseComp, FadeComp, FormComp, InputComp, OverlayComp, SelectComp} from './reusableFormComponents'
 import { yupResolver } from '@hookform/resolvers/yup';
-import {editPostApi, newPostApi} from '../services/api/marketApi'
+import {newPostApi, updatePostApi} from '../services/api/marketApi'
 
 const checkboxMessage= "Your email will be kept private. Market will securely email you messages from buyers."
 
@@ -53,7 +53,7 @@ const Sell = () => {
     const submitForm=async(values)=>{
         values.post_id= post_id
         setSubmitting(true)
-        const result = post? await editPostApi(values) : await newPostApi(values)
+        const result = post? await updatePostApi(values) : await newPostApi(values)
         setSubmitting(false)
         if(!result) return alert('application error posting to classifieds. Please try again.')
         if(result.status&&result.status===200) {
