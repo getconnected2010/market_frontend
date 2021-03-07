@@ -6,11 +6,18 @@
     form{
         @extend %formWrapper;
         color: $light;
-    }
-    a{
-        color: lighten($blue, 50);
-    }
-    button{
-        @extend .button__med;
+        span{
+            font-size: $xsm;
+            display: block;
+        }
+        a{
+            display: inline;
+            text-decoration: underline;
+            color: lighten($blue, 50);
+        }
+        button{
+            @extend .button__med;
+            margin-top: 1rem;
+        }
     }
 }

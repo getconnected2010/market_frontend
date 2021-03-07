@@ -13,7 +13,6 @@ import {getListApi, myPostsApi} from '../services/api/marketApi'
 import {fetchListAction} from '../actions/listActions'
 import {searchApi} from '../services/api/marketApi'
 
-
 const NavBar = () => {
   const catagories =['auto', 'household', 'electronics', 'fashion', 'housing', 'pesonal care', 'for hire', 'everything else']
   const dispatch = useDispatch()
@@ -21,7 +20,6 @@ const NavBar = () => {
   const user = useSelector(state=>state.user)
   const [showModal, setShowModal] = useState(false)
   const [modalTitle, setModalTitle]= useState('')
-
   const initValues={search:''}
   const schema= Yup.object().shape({
     search: Yup.string().required('?')
@@ -110,31 +108,23 @@ const NavBar = () => {
                 ))
             }
         </NavDropdown>
-
-        {
-          user.user_id &&  
-          <>
-              <Link className='navBar__link' to='/sell'>Post to Classifieds</Link>
-              <Link className='navBar__link' to='#' onClick={fetchMyPosts}>My posts</Link>
-          </>
-        }
-
         <FormComp onSubmit={handleSubmit(searchDb)}>
           <InputComp type='text' name='search' refProp={register} errProp={errors} />
           <ButtonComp type='submit'>Search</ButtonComp> 
         </FormComp>
-          
-          { user.user_id ?
-              <ButtonComp onClick={signout}>Logout</ButtonComp>
-            :
-            <>
-              <ButtonComp><Link to='/signin'>Sign-in</Link></ButtonComp>
-              <ButtonComp><Link to='/signup'>Sign-up</Link></ButtonComp>
-            </>
-          }
-
-          
-        
+        { user.user_id ?
+            <NavDropdown className='navBar__link' title="My account" >
+                <NavDropdown.Item onClick={()=> history.push('/sell')}>Post to Classifieds</NavDropdown.Item>
+                <NavDropdown.Item onClick={fetchMyPosts}>My posts</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=> history.push('/change')} >Change password</NavDropdown.Item>
+                <NavDropdown.Item onClick={signout}>Logout</NavDropdown.Item>
+            </NavDropdown>
+          :
+          <>
+            <ButtonComp><Link to='/signin'>Sign-in</Link></ButtonComp>
+            <ButtonComp><Link to='/signup'>Sign-up</Link></ButtonComp>
+          </>
+        }
       </div>
     </>
   )

@@ -23,8 +23,9 @@ function App () {
       <NavBar />
       <Switch>
         <Route exact path='/' component={HomePage} />
-        {/* <Route path='/edit/:post_id' component={EditPost} /> */}
+        <Route path='/change' component={SignUp} />
         <Route path='/list' component={List} />
+        <Route path='/reset' component={SignUp} />
         <Route path='/sell/:post_id' component={Sell} />
         <Route path='/sell' component={Sell} />
         <Route path='/signin' component={Signin} />

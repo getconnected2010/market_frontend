@@ -1,5 +1,5 @@
-import React from 'react'
-import {useHistory} from 'react-router-dom'
+import React, {useState} from 'react'
+import {useHistory, Link} from 'react-router-dom'
 import {useDispatch} from 'react-redux';
 import {useForm} from 'react-hook-form';
 import * as Yup from 'yup';
@@ -7,10 +7,13 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {ButtonComp,FormComp, InputComp} from '../components/reusableFormComponents'
 import {signInApi} from '../services/api/userApi'
 import {signinAction, signoutAction} from '../actions/userActions'
+import ModalComp from './ModalComp'
 
 const Signin = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const [showModal, setShowModal] = useState(false)
+    const [modalTtitle, setModalTitle] = useState('')
     const initValues={username:'', password:''}
     const schema = Yup.object().shape({
         username: Yup.string(),
@@ -31,19 +34,24 @@ const Signin = () => {
         reset(initValues)
         dispatch(signoutAction())
         if(result.response&&result.response.data&&result.response.data.msg){
-            return alert(result.response.data.msg)
+            setModalTitle(result.response.data.msg)
+            return setShowModal(true)
         }
-        alert('error logging you in')
+        setModalTitle('error logging you in')
+        setShowModal(true)
     }
     return (
-        <div className='signin'>
-            <FormComp onSubmit={handleSubmit(submitForm)} legend='Sign in'>
-                <InputComp label='User name :' name='username' type='text' errProp={errors} refProp={register} />
-                <InputComp label='Password :' name='password' type='password' errProp={errors} refProp={register} />
-                <a href='#' onClick={()=>reset(initValues)}>reset form?</a>
-                <ButtonComp type='submit'>Sign in</ButtonComp>
-            </FormComp>
-        </div>
+        <>
+            <ModalComp showProp={showModal} setShowProp={setShowModal} title={modalTtitle} />
+            <div className='signin'>
+                <FormComp onSubmit={handleSubmit(submitForm)} legend='Sign in'>
+                    <InputComp label='User name :' name='username' type='text' errProp={errors} refProp={register} />
+                    <InputComp label='Password :' name='password' type='password' errProp={errors} refProp={register} />
+                    <span>Forgot password? Reset it <Link to='/reset'>here</Link>.</span>
+                    <ButtonComp type='submit'>Sign in</ButtonComp>
+                </FormComp>
+            </div>
+        </>
     )
 }
 

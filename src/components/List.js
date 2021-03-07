@@ -74,6 +74,13 @@ const List = () => {
                             <div className='list__img' id={item.post_id}>
                                 <img src={item.image1} alt='first image' id={item.post_id}/>
                             </div>
+                            {   
+                                item.price 
+                                &&
+                                <div className='list__price'>
+                                    {item.price}
+                                </div>
+                            }
 
                             <div id={item.post_id} className='list__title'>
                                 {item.title}
