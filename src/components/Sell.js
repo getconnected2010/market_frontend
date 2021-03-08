@@ -16,7 +16,7 @@ const Sell = () => {
     const [showEmail, setShowEmail] = useState(false)
     const [submitting, setSubmitting] = useState(false)
     const post_id = params.post_id
-    let initValues = {catagory:'', email:'',title:'', description:'', pics:'', price:'', contact:''}
+    let initValues = {catagory:'', email:'',title:'', description:'', pics:'', price:'', contact:'', keepPic:''}
     let post;
     if(post_id && listArr.length>0){
         post = listArr.filter(item=>item.post_id===Number(post_id))
@@ -80,6 +80,10 @@ const Sell = () => {
                 <InputComp label='Post title :' name='title' type='text' errProp={errors} refProp={register} size='lg' />
                 <InputComp label='Description :' name='description' as='textarea' rows={3} errProp={errors} refProp={register} />
                 <InputComp label='Price :' name='price' type='text' errProp={errors} refProp={register} size='lg' />
+                {
+                    post&&
+                    <CheckboxComp label='Keep old pictures?' name='keepPic' refProp={register}/>
+                }
                 <InputComp label='Attach upto four pictures :' name='pics' type='file' multiple errProp={errors} refProp={register} />
                 {/* triggers a tooltip with a message on checkbox area hover */}
                 <OverlayComp message={checkboxMessage} >

@@ -99,7 +99,10 @@
                   width: 75vw;
                   height: 25vh;
                   margin-left: auto;
-                  overflow: hidden;                
+                  overflow: hidden; 
+                  h4{
+                        margin-left: 1.5rem;
+                  }               
                   li{
                         width: 45%;
                         list-style:square;

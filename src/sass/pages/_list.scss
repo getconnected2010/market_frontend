@@ -51,10 +51,10 @@
        @extend .button__xsm;
        position: absolute;
        top: 0;
-       left: 0.5rem;
+       right: 4.5rem;
        &:nth-of-type(2){
            background-color: $red;
-           left: 5.5rem;
+           right: 0.5rem;
        }
    }
    @include desktop{

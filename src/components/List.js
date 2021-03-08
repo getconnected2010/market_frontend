@@ -8,8 +8,8 @@ import {delPostApi} from '../services/api/marketApi'
 const List = () => {
     const listArr = useSelector(state => state.list)
     const history = useHistory()
-    let user_id
     const user = useSelector(state=> state.user)
+    let user_id
     if(user) user_id= user.user_id
     const [showModal, setShowModal] = useState(false)
     const [modalPostId, setModalPostId] = useState('')
@@ -66,7 +66,7 @@ const List = () => {
         <ModalComp showProp={showModal} setShowProp={setShowModal} postId={modalPostId} title={modalTitle} body={modalBody} price={modalPrice} contact={modalContact} picArr={modalPic}/>
         <div className='list'>
             {
-                Array.isArray(listArr)  //prevents components failure incase listArr isn't iterable
+                Array.isArray(listArr)
                 &&
                 listArr.map(item=>(
                     <div className='list__card' id={item.post_id} key={item.post_id}>
@@ -78,10 +78,9 @@ const List = () => {
                                 item.price 
                                 &&
                                 <div className='list__price'>
-                                    {item.price}
+                                    ${item.price}
                                 </div>
                             }
-
                             <div id={item.post_id} className='list__title'>
                                 {item.title}
                             </div>
@@ -89,8 +88,8 @@ const List = () => {
                         {  
                             user_id===item.user_id &&
                             <>
-                                <ButtonComp onClick={editPost} id={item.post_id}>Edit post</ButtonComp>
-                                <ButtonComp onClick={deletePost} id={item.post_id}>Delete post</ButtonComp>
+                                <ButtonComp onClick={editPost} id={item.post_id}>Edit</ButtonComp>
+                                <ButtonComp onClick={deletePost} id={item.post_id}>Delete</ButtonComp>
                             </>
                         }
                     </div>

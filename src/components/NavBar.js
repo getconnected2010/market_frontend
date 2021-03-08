@@ -113,7 +113,7 @@ const NavBar = () => {
           <ButtonComp type='submit'>Search</ButtonComp> 
         </FormComp>
         { user.user_id ?
-            <NavDropdown className='navBar__link' title="My account" >
+            <NavDropdown className='navBar__link' title="More" >
                 <NavDropdown.Item onClick={()=> history.push('/sell')}>Post to Classifieds</NavDropdown.Item>
                 <NavDropdown.Item onClick={fetchMyPosts}>My posts</NavDropdown.Item>
                 <NavDropdown.Item onClick={()=> history.push('/change')} >Change password</NavDropdown.Item>

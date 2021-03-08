@@ -14,7 +14,7 @@ const SignUp = () => {
     const url = pathArr[pathArr.length-1]
     const [modalTtitle, setModalTitle] = useState('')
     const [showModal, setShowModal] = useState(false)
-    const initValues = {username:'', password:'', confirm:'', pet:'', oldPassword:''}
+    const initValues = {username:'', password:'', confirm:'', pet:'', newPassword:''}
     const schema = Yup.object().shape({
         username: Yup.string().required('username is required')
     })
@@ -60,11 +60,11 @@ const SignUp = () => {
         <div className='signup'>
             <FormComp onSubmit={handleSubmit(submitForm)} legend={url==='signup'?'Sign Up':'Password service'}>
                 <InputComp name='username' label='User name :' type='text' errProp={errors} refProp={register}/>
-                <InputComp name='password' label={url==='signup'? 'Password :':'New password :'} type='password' errProp={errors} refProp={register}/>
+                <InputComp name='newPassword' label={url==='signup'? 'Password :':'New password :'} type='password' errProp={errors} refProp={register}/>
                 <InputComp name='confirm' label='Confirm Password :' type='password' errProp={errors} refProp={register}/>
                 {
                     url==='change' ?
-                    <InputComp name='oldPassword' label='Your old password :' type='password' errProp={errors} refProp={register}/>
+                    <InputComp name='password' label='Your old password :' type='password' errProp={errors} refProp={register}/>
                     :
                     <InputComp name='pet' label='Your favourite pet name :' type='text' errProp={errors} refProp={register}/>
                 }
