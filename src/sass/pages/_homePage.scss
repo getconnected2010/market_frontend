@@ -33,7 +33,6 @@
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
-            overflow: scroll;
             .image{
                   height: 45%;
                   width: 19%;
@@ -53,14 +52,13 @@
                         cursor:pointer; 
                   }
                   .price{
-                        @include dflex(center, center);
                         position: absolute;
-                        height: 25%;
-                        width: 25%;
+                        padding: 0.25rem;
                         border-radius: 50%;
-                        bottom:5%;
+                        top:5%;
                         left:5%;
                         background-color: darken($light, 10);
+                        color: $green;
                         font-family: sans-serif;
                         font-weight: bold;
                   }
@@ -82,6 +80,7 @@
                   top: 0;
                   width: 25vw;
                   flex-wrap: wrap;
+                  overflow: scroll;
                   .image{
                         height: unset;
                         width: 45%;

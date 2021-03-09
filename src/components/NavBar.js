@@ -55,47 +55,39 @@ const NavBar = () => {
           if(result.data.length>0){
               sessionStorage.setItem('listArr', JSON.stringify(result.data))
               dispatch(fetchListAction())
-              history.push('/list')
-              return
+              return history.push('/list')
           }else{
               setModalTitle('No items in that caragory. Please make anohter selection')
-              setShowModal(true)
           }
       } else if(result&&result.response&&result.response.data&&result.response.data.msg){
           setModalTitle(result.response.data.msg)
-          setShowModal(true)
       }else{
           setModalTitle('Error fetching items in that catagory. Please try again.')
-          setShowModal(true)
       }
+      setShowModal(true)
     }
   const fetchMyPosts=async()=>{
     const result= await myPostsApi()
     if(!result){
       setModalTitle('Error fetching your posts')
-      setShowModal(true)
-      return
+      return setShowModal(true)
     }
     if(result.status===200 && Array.isArray(result.data)){
       sessionStorage.setItem('listArr', JSON.stringify(result.data))
-     window.location.href ='/list'
-      return
+      return window.location.href ='/list'
     }
     if(result.response&&result.response.data&&result.response.data.msg){
       setModalTitle(result.response.data.msg)
-      setShowModal(true)
-      return
+      return setShowModal(true)
     }
     setModalTitle('Error fetching your posts')
-    setShowModal(true)
-    return
+    return setShowModal(true)
   }
   const signout =async()=>{
       await signoutApi()
       dispatch(signoutAction())
       window.location.href='/'
   }
-  
   return (
     <>
       <ModalComp title={modalTitle} showProp={showModal} setShowProp={setShowModal} />

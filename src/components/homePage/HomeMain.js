@@ -10,6 +10,7 @@ import {fetchListAction} from '../../actions/listActions'
 const HomePage = () => {
     const dispatch = useDispatch()
     const listArr = useSelector(state=>state.list)
+    const tenItemsArr = listArr.slice(0, 10)
     const [showModal, setShowModal] = useState(false)
     const [modalTitle, setModalTitle] = useState('')
     const [modalPostId, setModalPostId] = useState('')
@@ -19,7 +20,7 @@ const HomePage = () => {
     const [modalPic, setModalPic] = useState([])
     
     const getDetails=(e)=>{
-        const selectedItem= listArr.filter(item=>item.post_id===Number(e.target.id))
+        const selectedItem= tenItemsArr.filter(item=>item.post_id===Number(e.target.id))
         setModalPostId(selectedItem[0].post_id)
         setModalTitle(selectedItem[0].title)
         setModalPrice(selectedItem[0].price)
@@ -50,9 +51,9 @@ const HomePage = () => {
 
                 <div className='homePage__pic-preview'>
                     {
-                        Array.isArray(listArr)
+                        Array.isArray(tenItemsArr)
                         && 
-                        listArr.map((pic, i)=>(
+                        tenItemsArr.map((pic, i)=>(
                             <div id={pic.post_id} key={i} className='image'>
                                 {
                                     pic.price
@@ -73,9 +74,9 @@ const HomePage = () => {
                 <h4>Today's highlights...</h4>
                     <ul >
                     {
-                        Array.isArray(listArr)
+                        Array.isArray(tenItemsArr)
                         &&
-                        listArr.map(item=>(
+                        tenItemsArr.map(item=>(
                             <Link to='#' key={item.post_id} id={item.post_id} onClick={getDetails}>
                                 <li id={item.post_id} onClick={getDetails}>
                                 {item.price&& `$${item.price}. . .`} {item.title}

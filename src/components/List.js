@@ -9,6 +9,7 @@ const List = () => {
     const listArr = useSelector(state => state.list)
     const history = useHistory()
     const user = useSelector(state=> state.user)
+    console.log(user)
     let user_id
     if(user) user_id= user.user_id
     const [showModal, setShowModal] = useState(false)
@@ -91,6 +92,9 @@ const List = () => {
                                 <ButtonComp onClick={editPost} id={item.post_id}>Edit</ButtonComp>
                                 <ButtonComp onClick={deletePost} id={item.post_id}>Delete</ButtonComp>
                             </>
+                        }
+                        {
+                            user.admin==='true'&& <h4>Admin delete this post</h4>
                         }
                     </div>
                 ))
