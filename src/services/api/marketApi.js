@@ -1,6 +1,15 @@
 import {axiosInstance} from './axiosConfig'
 
-export const delPostApi= async(data)=>{
+export const adminDelPostApi = async(data)=>{
+    try {
+        const result = await axiosInstance.delete(`/market/admin/${data}`)
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+export const delMyPostApi= async(data)=>{
     try {
         const result = await axiosInstance.delete(`/market/${data}`)
         return result

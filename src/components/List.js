@@ -3,13 +3,12 @@ import {useSelector} from 'react-redux'
 import {Link, useHistory} from 'react-router-dom'
 import ModalComp from '../components/ModalComp'
 import {ButtonComp} from '../components/reusableFormComponents'
-import {delPostApi} from '../services/api/marketApi'
+import {adminDelPostApi, delMyPostApi} from '../services/api/marketApi'
 
 const List = () => {
     const listArr = useSelector(state => state.list)
     const history = useHistory()
     const user = useSelector(state=> state.user)
-    console.log(user)
     let user_id
     if(user) user_id= user.user_id
     const [showModal, setShowModal] = useState(false)
@@ -34,7 +33,7 @@ const List = () => {
     const deletePost = async(e)=>{
         const confirmDel= window.confirm('Are you sure you want to delete this post?')
         if(confirmDel===false) return
-        const result = await delPostApi(e.target.id)
+        const result = user.admin==='true'? await adminDelPostApi(e.target.id) : await delMyPostApi(e.target.id)
         setModalBody('')
         setModalPrice('')
         setModalContact('')
@@ -94,7 +93,7 @@ const List = () => {
                             </>
                         }
                         {
-                            user.admin==='true'&& <h4>Admin delete this post</h4>
+                            user.admin==='true'&& <h4 onClick={deletePost} id={item.post_id}>Admin delete this post</h4>
                         }
                     </div>
                 ))
